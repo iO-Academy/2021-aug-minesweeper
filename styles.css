@@ -1,0 +1,34 @@
+*{
+    box-sizing: border-box;
+
+}
+body {
+    font-family: Georgia;
+    margin: 0;
+}
+
+header {
+    height: 100vh;
+    background-image: url('project-assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+h1 {
+    color: #355f4d;
+    font-size: 5rem;
+}
+.instructions{
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+}
+h2 {
+    font-size: 2rem;
+}
+
+p{
+    font-size: 1.25rem;
+}
