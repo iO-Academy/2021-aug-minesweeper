@@ -19,11 +19,13 @@ header {
 h1 {
     color: #355f4d;
     font-size: 5rem;
+    margin: 60px 40px;
 }
 .instructions{
     background-color: rgba(224,216,222, 0.5);
     padding: 30px 40px;
     border-radius: 5px;
+    margin: 20px 40px;
 }
 h2 {
     font-size: 2rem;
