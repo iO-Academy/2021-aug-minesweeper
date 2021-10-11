@@ -1,7 +1,7 @@
-*{
+* {
     box-sizing: border-box;
-
 }
+
 body {
     font-family: Georgia;
     margin: 0;
@@ -21,16 +21,18 @@ h1 {
     font-size: 5rem;
     margin: 60px 40px;
 }
-.instructions{
+
+.instructions {
     background-color: rgba(224,216,222, 0.5);
     padding: 30px 40px;
     border-radius: 5px;
     margin: 20px 40px;
 }
+
 h2 {
     font-size: 2rem;
 }
 
-p{
+p {
     font-size: 1.25rem;
 }
