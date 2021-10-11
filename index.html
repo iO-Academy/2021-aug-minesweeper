@@ -17,6 +17,25 @@
         <p> Pick how many lynx you are looking for (no more than half of the number you picked for the Forest size) then click the play button.</p>
         <p> Click on the squares to find all the lynx in the forest but beware of the snakes.</p>
     </div>
+    <div class="form">
+        <form method="post">
+            <div class="input">
+                <div class="forest">
+                    <label for="gridSize">How big is the forest?</label><br>
+                    <input type="number" id="gridSize" name="gridSize" min="2">
+                </div>
+                <div class="lynx">
+                    <label for ="numLynx">How many Lynx are we looking for?</label><br>
+                    <input type="number" id="numLynx" name="numLynx" min="1">
+                </div>
+            </div>
+            <br>
+            <div class="button">
+                <input type="submit" id="button" value="Let's find some Lynx!">
+            </div>
+
+        </form>
+    </div>
 </header>
 
 </body>

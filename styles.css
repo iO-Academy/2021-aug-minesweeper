@@ -36,3 +36,26 @@ h2 {
 p {
     font-size: 1.25rem;
 }
+
+div.form {
+    display: flex;
+    justify-content: center;
+}
+
+div.input {
+    display : flex;
+    justify-content: center;
+}
+
+
+.button {
+    margin-left: 20%;
+}
+
+.forest {
+    margin-right: 30px;
+}
+
+.lynx {
+    margin-left: 30px;
+}
