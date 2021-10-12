@@ -8,7 +8,6 @@ body {
 }
 
 header {
-    /*height: 100vh;*/
     background-image: url('project-assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
     background-size: cover;
     background-position: center bottom;
@@ -96,12 +95,16 @@ p {
     justify-content: space-around;
 }
 
+#hide {
+    display: none;
+}
+
 .grid-item {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
     background-size: cover;
     height: 200px;
     width: 200px;
-    margin: 10px 20px 10px 20px;
+    margin: 10px 20px;
 }
 
 div[data-hit ~= "1"] {
@@ -111,3 +114,4 @@ div[data-hit ~= "1"] {
 div[data-hit ~= "0"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
 }
+
