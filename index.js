@@ -28,5 +28,29 @@ function validateInput(num1, num2){
     return true
 }
 
-validateInput(10, -6.5)
-console.log(errorMessage)
+//add an event listener to the form
+document.getElementById('inputForm').addEventListener('submit', function(e){
+        //prevent the form from submitting
+        e.preventDefault()
+
+        //grab the total grid number input
+        let gridSize = parseInt(document.getElementById('gridSize').value)
+
+        //grab the number of lynx input
+        let numLynx = parseInt(document.getElementById('numLynx').value)
+
+       //call the validation function
+        let inputValidation = validateInput(gridSize,numLynx)
+        console.log(inputValidation)
+
+
+/*        //call the generate grid function
+        let htmlString = generateGrid()
+
+        //add div elements to the DOM
+        document.getElementByID('gridDiv').innerHTML = htmlString
+
+        //call the hit/miss event listener function
+        hitMissFunction()*/
+    }
+)
