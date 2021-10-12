@@ -38,35 +38,6 @@ p {
     font-size: 1.25rem;
 }
 
-<<<<<<< HEAD
-#gridContainer {
-    background-color: rgba(224,216,222, 0.5);
-    padding: 30px 40px;
-    border-radius: 5px;
-    margin: 20px 40px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-}
-
-.grid-item {
-    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
-    background-size: cover;
-    height: 200px;
-    width: 200px;
-    margin: 10px 20px 10px 20px;
-}
-
-div[data-hit ~= "1"] {
-    background-image: url("https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=768,574");
-}
-
-div[data-hit ~= "0"] {
-    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
-}
-
-
-=======
 .form {
     display: flex;
     justify-content: center;
@@ -114,4 +85,29 @@ div[data-hit ~= "0"] {
 #button:hover {
     background-color: #593837;
 }
->>>>>>> s3-generateGrid
+
+#gridContainer {
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    margin: 20px 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.grid-item {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    background-size: cover;
+    height: 200px;
+    width: 200px;
+    margin: 10px 20px 10px 20px;
+}
+
+div[data-hit ~= "1"] {
+    background-image: url("https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=768,574");
+}
+
+div[data-hit ~= "0"] {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+}
