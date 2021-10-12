@@ -1,6 +1,8 @@
 
 //removes grid container from document flow
 document.getElementById('gridContainer').style.display="none"
+document.getElementById('gameTitle').style.display="none"
+
 
 //function to generate all game tiles
 document.querySelector('.form').addEventListener('submit', (e) => {
@@ -11,6 +13,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     //stops form from submitting
     e.preventDefault()
     //sets the grid container display to default
+    document.getElementById('gameTitle').style.display=""
     document.getElementById('gridContainer').style.display=""
     let generateSquares = () => {
         //create empty array
