@@ -1,5 +1,6 @@
 
-//Function takes 2 integer inputs from form.
+// DOCBLOCK READ PLS
+// Function takes 2 integer inputs from form.
 //num1 is grid size.
 //num2 is the number of lynx.
 //Function checks if number is integer,
@@ -27,4 +28,5 @@ function validateInput(num1, num2){
     return true
 }
 
-
+validateInput(10, -6.5)
+console.log(errorMessage)
