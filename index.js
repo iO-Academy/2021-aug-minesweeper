@@ -27,6 +27,3 @@ function validateInput(num1, num2){
 
     return true
 }
-
-validateInput(10, -6.5)
-console.log(errorMessage)
