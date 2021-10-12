@@ -37,7 +37,7 @@ p {
     font-size: 1.25rem;
 }
 
-div.form {
+.form {
     display: flex;
     justify-content: center;
     background-color: rgba(224,216,222, 0.5);
@@ -45,10 +45,9 @@ div.form {
     border-radius: 5px;
     margin-top: 20px;
     width: 90%;
-
 }
 
-.input {
+.inputContainer {
     display: flex;
     justify-content: space-around;
 }
@@ -64,16 +63,7 @@ div.form {
     justify-content: center;
 }
 
-.forest {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
-    margin: 10px;
-    font-size: 1.25rem;
-}
-
-.lynx {
+.userInput {
     display: flex;
     justify-content: center;
     align-items: center;
