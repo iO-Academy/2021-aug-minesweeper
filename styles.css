@@ -8,9 +8,10 @@ body {
 }
 
 header {
-    height: 100vh;
+    /*height: 100vh;*/
     background-image: url('project-assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
     background-size: cover;
+    background-position: center bottom;
     display: flex;
     align-items: center;
     flex-flow: column;
@@ -83,4 +84,38 @@ p {
 
 #button:hover {
     background-color: #593837;
+}
+
+#gridContainer {
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    margin: 20px 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.grid-item {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    background-size: cover;
+    height: 200px;
+    width: 200px;
+    margin: 10px 20px 10px 20px;
+}
+
+div[data-hit ~= "1"] {
+    background-image: url("https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=768,574");
+}
+
+div[data-hit ~= "0"] {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+}
+
+.hit{
+    background-color: green;
+}
+
+.miss {
+    background-color: red;
 }
