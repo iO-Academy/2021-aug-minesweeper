@@ -28,7 +28,6 @@ function validateInput(num1, num2){
 }
 
 
-
 // Grabs all grid-item divs as gridItems to be used in forEach
 let gridItems = document.querySelectorAll('.grid-item')
 
