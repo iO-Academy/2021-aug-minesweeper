@@ -84,3 +84,11 @@ p {
 #button:hover {
     background-color: #593837;
 }
+
+.hit {
+    background-color: green;
+}
+
+.miss {
+    background-color: red;
+}

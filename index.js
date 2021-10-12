@@ -1,4 +1,3 @@
-
 // DOCBLOCK READ PLS
 // Function takes 2 integer inputs from form.
 //num1 is grid size.
@@ -28,5 +27,26 @@ function validateInput(num1, num2){
     return true
 }
 
-validateInput(10, -6.5)
-console.log(errorMessage)
+
+// Grabs all grid-item divs as gridItems to be used in forEach
+let gridItems = document.querySelectorAll('.grid-item')
+
+// DOCBLOCK BELOW
+// Does a forEach over gridItems and checks the data-hit value for each of them
+// When clicked, if data-hit is 1: Applies class='hit' and changes textContent to 'HIT'
+// When clicked, if data-hit is 0: Applies class='miss' and changes textContent to 'MISS'
+// Both .hit and .miss are styled in CSS, ready for application.
+// DOCBLOCK ABOVE
+
+gridItems.forEach( (item) => {
+    item.addEventListener('click', () => {
+        if(item.dataset.hit === '1'){
+            item.setAttribute('class', 'hit')
+            item.textContent = 'HIT'
+        }
+        if(item.dataset.hit === '0'){
+            item.setAttribute('class', 'miss')
+            item.textContent = 'MISS'
+        }
+    })
+})
