@@ -40,6 +40,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
                 document.getElementById('gridContainer').innerHTML += square
             })
         }
+
     //validates form input
     if(!validateInput(gridSize, numLynx)){
         document.getElementById('errorMessage').textContent = errorMessage
@@ -53,7 +54,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         //scroll to top of game play area
         document.querySelector('#gameTitle').scrollIntoView({
             behavior: 'smooth'
-        });
+        })
     }
 })
 
@@ -73,6 +74,14 @@ let errorMessage = ""
 function validateInput(num1, num2) {
     if (!Number.isInteger(num1) || !Number.isInteger(num2)){
         errorMessage = 'Please only input whole numbers'
+        return false
+    }
+    if (num1 > 100 || num2 > 50) {
+        errorMessage = 'Grid size must not exceed 100 and number of lynx must not exceed 50'
+        return false
+    }
+    if (Math.sign(num1) === 0 || Math.sign(num2) === 0) {
+        errorMessage = 'Can not input 0'
         return false
     }
     if (Math.sign(num1) === -1 || Math.sign(num2) === -1) {
@@ -102,12 +111,10 @@ gridItems.forEach( (item) => {
         if(item.dataset.hit === '1'){
             item.style.backgroundImage = "url('project-assets/babylynx2.jpg')"
             item.textContent = 'Hooray, you\'ve found a lynx!'
-            console.log('lynx')
         }
         if(item.dataset.hit === '0'){
             item.style.backgroundImage = "url('project-assets/snakeattack.png')"
             item.textContent = 'OUCH! That\'s a snake'
-            console.log('snake')
         }
     })
 })
