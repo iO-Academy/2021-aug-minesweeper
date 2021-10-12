@@ -105,17 +105,9 @@ p {
 }
 
 div[data-hit ~= "1"] {
-    background-image: url("https://images.immediate.co.uk/production/volatile/sites/3/2018/08/Simpsons_SO28_Gallery_11-fb0b632.jpg?quality=90&resize=768,574");
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
 }
 
 div[data-hit ~= "0"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
-}
-
-.hit{
-    background-color: green;
-}
-
-.miss {
-    background-color: red;
 }

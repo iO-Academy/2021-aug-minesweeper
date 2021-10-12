@@ -6,41 +6,56 @@ document.getElementById('gameTitle').style.display="none"
 
 //function to generate all game tiles
 document.querySelector('.form').addEventListener('submit', (e) => {
-    //Defining total grid size, number of lynx and misses from user input
-    let numLynx = document.getElementById('numLynx').value
-    let gridSize = document.getElementById('gridSize').value
-    let miss = gridSize - numLynx
     //stops form from submitting
     e.preventDefault()
-    //sets the grid container display to default
-    document.getElementById('gameTitle').style.display=""
-    document.getElementById('gridContainer').style.display=""
-    let generateSquares = () => {
-        //create empty array
-        let squares = []
-        //For every hit we are putting a div into the array with data-hit 1
-        for(i=0; i<numLynx; i++) {
-            squares.push('<div class="grid-item" data-hit="1"></div>')
+    //Defining total grid size, number of lynx and misses from user input
+    let numLynx = parseInt(document.getElementById('numLynx').value)
+    let gridSize = parseInt(document.getElementById('gridSize').value)
+    let miss = gridSize - numLynx
+
+    //reset
+    document.getElementById('gridContainer').innerHTML = ''
+    document.getElementById('errorMessage').textContent = ''
+
+
+        let generateSquares = () => {
+            //create empty array
+            let squares = []
+            //For every hit we are putting a div into the array with data-hit 1
+            for (i = 0; i < numLynx; i++) {
+                squares.push('<div class="grid-item" data-hit="1"></div>')
+            }
+            //For every hit we are putting a div into the array with data-hit 0
+            for (i = 0; i < miss; i++) {
+                squares.push('<div class="grid-item" data-hit="0" ></div>')
+            }
+            //shuffle the array
+            let shuffle = (array) => array.map(a => ({
+                sort: Math.random(),
+                value: a
+            })).sort((a, b) => a.sort - b.sort).map(a => a.value)
+            let shuffledArr = shuffle(squares)
+            //adding each array element to html of container
+            shuffledArr.forEach((square) => {
+                document.getElementById('gridContainer').innerHTML += square
+            })
         }
-     //For every hit we are putting a div into the array with data-hit 0
-        for(i=0; i<miss; i++) {
-            squares.push('<div class="grid-item" data-hit="0" ></div>')
-        }
-        //shuffle the array
-        let shuffle = (array) => array.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value)
-        let shuffledArr = shuffle(squares)
-        //adding each array element to html of container
-        shuffledArr.forEach((square) => {
-            document.getElementById('gridContainer').innerHTML += square
+
+    //validates form input
+    if(!validateInput(gridSize, numLynx)){
+        document.getElementById('errorMessage').textContent = errorMessage
+    }else {
+        //execute function
+        generateSquares()
+        turnCard()
+        //sets the grid container display to default
+        document.getElementById('gameTitle').style.display = ""
+        document.getElementById('gridContainer').style.display = ""
+        //scroll to top of game play area
+        document.querySelector('#gameTitle').scrollIntoView({
+            behavior: 'smooth'
         })
     }
-    //execute function
-    generateSquares()
-    //scroll to top of game play area
-    document.querySelector('#gridContainer').scrollIntoView({
-        behavior: 'smooth'
-    });
-    validateInput(gridSize, numLynx)
 })
 
 
@@ -61,6 +76,14 @@ function validateInput(num1, num2) {
         errorMessage = 'Please only input whole numbers'
         return false
     }
+    if (num1 > 100 || num2 > 50) {
+        errorMessage = 'Grid size must not exceed 100 and number of lynx must not exceed 50'
+        return false
+    }
+    if (Math.sign(num1) === 0 || Math.sign(num2) === 0) {
+        errorMessage = 'Can not input 0'
+        return false
+    }
     if (Math.sign(num1) === -1 || Math.sign(num2) === -1) {
         errorMessage = 'You must have a positive grid size and number of lynx to find'
         return false
@@ -73,10 +96,9 @@ function validateInput(num1, num2) {
     return true
 }
 
-
+function turnCard() {
 // Grabs all grid-item divs as gridItems to be used in forEach
 let gridItems = document.querySelectorAll('.grid-item')
-
 // DOCBLOCK BELOW
 // Does a forEach over gridItems and checks the data-hit value for each of them
 // When clicked, if data-hit is 1: Applies class='hit' and changes textContent to 'HIT'
@@ -87,12 +109,14 @@ let gridItems = document.querySelectorAll('.grid-item')
 gridItems.forEach( (item) => {
     item.addEventListener('click', () => {
         if(item.dataset.hit === '1'){
-            item.setAttribute('class', 'hit')
-            item.textContent = 'HIT'
+            item.style.backgroundImage = "url('project-assets/babylynx2.jpg')"
+            item.textContent = 'Hooray, you\'ve found a lynx!'
         }
         if(item.dataset.hit === '0'){
-            item.setAttribute('class', 'miss')
-            item.textContent = 'MISS'
+            item.style.backgroundImage = "url('project-assets/snakeattack.png')"
+            item.textContent = 'OUCH! That\'s a snake'
         }
     })
 })
+}
+

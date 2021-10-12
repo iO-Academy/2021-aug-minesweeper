@@ -19,22 +19,22 @@
         <p> Click on the squares to find all the lynx in the forest... but beware of the snakes!</p>
     </div>
     <div class="form">
-        <form>
+        <form method="post" id="inputForm">
             <div class="inputContainer">
                 <div class="userInput">
                     <label for="gridSize">How big is the forest?</label>
-                    <input type="number" class="inputBox" id="gridSize" name="gridSize" min="2" max="100">
+                    <input type="number" class="inputBox" id="gridSize" name="gridSize" min="2" max="100" required>
                 </div>
                 <div class="userInput">
                     <label for ="numLynx">How many Lynx?</label>
-                    <input type="number" class="inputBox" id="numLynx" name="numLynx" min="1" max="50">
+                    <input type="number" class="inputBox" id="numLynx" name="numLynx" min="1" max="50" required>
                 </div>
             </div>
 
             <div class="button">
                 <a href="#gridContainer" ><input type="submit" id="button" value="Let's find some Lynx!"></a>
             </div>
-
+            <p id="errorMessage"></p>
         </form>
     </div>
     <h1 id="gameTitle">Locate the Lynx</h1>
