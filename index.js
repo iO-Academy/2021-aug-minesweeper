@@ -7,7 +7,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     //Defining total grid size, number of lynx and misses from user input
     let numLynx = document.getElementById('numLynx').value
     let gridSize = document.getElementById('gridSize').value
-    let miss = gridSize - document.getElementById('numLynx').value
+    let miss = gridSize - numLynx
     //stops form from submitting
     e.preventDefault()
     //sets the grid container display to default
@@ -15,21 +15,18 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     let generateSquares = () => {
         //create empty array
         let squares = []
-        // replace 10. for every hit we are putting a div into the array with data-hit 1
+        //For every hit we are putting a div into the array with data-hit 1
         for(i=0; i<numLynx; i++) {
             squares.push('<div class="grid-item" data-hit="1"></div>')
         }
-     // replace 12. for every hit we are putting a div into the array with data-hit 0
+     //For every hit we are putting a div into the array with data-hit 0
         for(i=0; i<miss; i++) {
             squares.push('<div class="grid-item" data-hit="0" ></div>')
         }
         //shuffle the array
         let shuffle = (array) => array.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value)
         let shuffledArr = shuffle(squares)
-        console.log(squares)
-        //create empty string
-        emptyString = ''
-        //adding each
+        //adding each array element to html of container
         shuffledArr.forEach((square) => {
             document.getElementById('gridContainer').innerHTML += square
         })
@@ -40,6 +37,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     document.querySelector('#gridContainer').scrollIntoView({
         behavior: 'smooth'
     });
+    validateInput(gridSize, numLynx)
 })
 
 
@@ -55,7 +53,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
 
 let errorMessage = ""
 
-function validateInput(num1, num2){
+function validateInput(num1, num2) {
     if (!Number.isInteger(num1) || !Number.isInteger(num2)){
         errorMessage = 'Please only input whole numbers'
         return false
