@@ -99,12 +99,12 @@ let gridItems = document.querySelectorAll('.grid-item')
 
 gridItems.forEach( (item) => {
     item.addEventListener('click', () => {
-        if(item.dataset.hit == '1'){
+        if(item.dataset.hit === '1'){
             item.style.backgroundImage = "url('project-assets/babylynx2.jpg')"
             item.textContent = 'Hooray, you\'ve found a lynx!'
             console.log('lynx')
         }
-        if(item.dataset.hit == '0'){
+        if(item.dataset.hit === '0'){
             item.style.backgroundImage = "url('project-assets/snakeattack.png')"
             item.textContent = 'OUCH! That\'s a snake'
             console.log('snake')
