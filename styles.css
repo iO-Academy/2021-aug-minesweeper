@@ -5,15 +5,16 @@
 body {
     font-family: Georgia;
     margin: 0;
-}
-
-header {
     background-image: url('project-assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
     background-size: cover;
     background-position: center bottom;
+}
+
+header {
     display: flex;
     align-items: center;
     flex-flow: column;
+    min-height: 100vh;
 }
 
 h1 {
@@ -95,11 +96,12 @@ p {
     justify-content: space-around;
 }
 
-#hide {
+section {
     display: none;
+    flex-flow: column;
 }
 
-.grid-item {
+.gridItem {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
     background-size: cover;
     height: 200px;
@@ -109,9 +111,35 @@ p {
 
 div[data-hit ~= "1"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    color: transparent;
 }
 
 div[data-hit ~= "0"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    color: transparent;
 }
 
+@media screen and (max-width: 640px) {
+    .inputContainer {
+        flex-flow: column;
+    }
+    .gridItem {
+        height: 100px;
+        width: 100px;
+        margin: 5px 10px;
+    }
+    #gridContainer {
+        padding: 20px 10px;
+        justify-content: space-evenly;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+#gameTitle {
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    text-align: center;
+}

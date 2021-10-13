@@ -20,7 +20,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         generateSquares(numLynx, miss)
         turnCard()
         //sets the grid container display to default
-        document.getElementById('hide').style.display = "block"
+        document.getElementById('hide').style.display = "flex"
         //scroll to top of game play area
         document.querySelector('#gameTitle').scrollIntoView({
             behavior: 'smooth'
@@ -60,11 +60,11 @@ function generateSquares(numLynx, miss) {
     let squares = []
     //For every hit we are putting a div into the array with data-hit 1
     for (i = 0; i < numLynx; i++) {
-        squares.push('<div class="grid-item" data-hit="1"></div>')
+        squares.push('<div class="gridItem" data-hit="1"></div>')
     }
     //For every miss we are putting a div into the array with data-hit 0
     for (i = 0; i < miss; i++) {
-        squares.push('<div class="grid-item" data-hit="0" ></div>')
+        squares.push('<div class="gridItem" data-hit="0" ></div>')
     }
     //shuffle the array
     const shuffle = (array) => array.map(a => ({
@@ -79,8 +79,8 @@ function generateSquares(numLynx, miss) {
 }
 
 function turnCard() {
-    // Grabs all grid-item divs as gridItems to be used in forEach
-    let gridItems = document.querySelectorAll('.grid-item')
+    // Grabs all gridItem divs as gridItems to be used in forEach
+    let gridItems = document.querySelectorAll('.gridItem')
     gridItems.forEach((item) => {
         item.addEventListener('click', () => {
             if(item.dataset.hit === '1') {
