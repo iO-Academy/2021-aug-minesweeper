@@ -111,17 +111,25 @@ function newGame() {
     //reshow splash screen
     document.querySelector('#mainTitle').scrollIntoView({
         behavior: 'smooth'})
+
+    //resets game window
+    document.querySelector('header').style.minHeight = "100vh"
+
+    modalDiv.style.display = "none"
+    modalBlur.style.filter = "none"
 }
 
-//pop up modal
-document.querySelector(".fake-event").addEventListener("click", () => {
-    document.querySelector(".endModal").style.display = "inline-block"
-    document.querySelector(".modal-blur").style.filter = "blur(2px)"
+const modalDiv = document.querySelector(".endModal")
+const modalBlur = document.querySelector(".modal-blur")
+//populate line 125 with modal call
+const modalEvent = document.querySelector("")
+const playAgainBtn = document.querySelector(".play-again")
+
+modalEvent.addEventListener("click", () =>{
+    modalDiv.style.display = "inline-block"
+    modalBlur.style.filter = "blur(2px)"
 })
 
-//play again button
-document.querySelector(".play-again").addEventListener('click', () => {
+playAgainBtn.addEventListener("click", () => {
     newGame()
-    document.querySelector(".endModal").style.display = "none"
-    document.querySelector(".modal-blur").style.filter= "none"
 })

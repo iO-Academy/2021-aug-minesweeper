@@ -146,6 +146,14 @@ div[data-hit ~= "0"] {
 
 }
 
+.endModalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
 .endModalContent button {
     background-color: #E0D8DE;
     border-radius: 10px;
@@ -153,7 +161,10 @@ div[data-hit ~= "0"] {
     color: #355f4d;
     padding: 10px;
     transition: 0.3s;
-    margin-top: 50px;
+    margin-top: 100px;
+    width: 50%;
+    position: relative;
+    bottom: 0;
 }
 
 .endModalContent button:hover {
@@ -162,6 +173,10 @@ div[data-hit ~= "0"] {
 
 .modal-blur {
     filter: none;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 #gameTitle {
