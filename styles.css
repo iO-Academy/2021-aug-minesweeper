@@ -120,6 +120,73 @@ div[data-hit ~= "2"]{
     color: transparent;
 }
 
+.endModal {
+    display: none;
+    width: 70%;
+    height: 30%;
+    border: 2px solid gray;
+    text-align: center ;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #355f4d;
+    color: #E0D8DE;
+    border-radius: 10px;
+    box-shadow:
+            2.5px 2.5px 2.2px rgba(0, 0, 0, 0.039),
+            6.1px 5.9px 5.3px rgba(0, 0, 0, 0.057),
+            11.5px 11.1px 10px rgba(0, 0, 0, 0.07),
+            20.5px 19.9px 17.9px rgba(0, 0, 0, 0.083),
+            38.4px 37.2px 33.4px rgba(0, 0, 0, 0.101),
+            92px 89px 80px rgba(0, 0, 0, 0.14)
+;
+
+}
+
+.endModalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.endModalContent button {
+    background-color: #E0D8DE;
+    border-radius: 10px;
+    border: #355f4d 2px solid;
+    color: #355f4d;
+    padding: 10px;
+    transition: 0.3s;
+    margin-top: 100px;
+    width: 50%;
+    position: relative;
+    bottom: 0;
+}
+
+.endModalContent button:hover {
+    background-color: #593837;
+}
+
+.modal-blur {
+    filter: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#gameTitle {
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+
 @media screen and (max-width: 640px) {
     .inputContainer {
         flex-flow: column;
@@ -138,9 +205,3 @@ div[data-hit ~= "2"]{
     }
 }
 
-#gameTitle {
-    background-color: rgba(224,216,222, 0.5);
-    padding: 30px 40px;
-    border-radius: 5px;
-    text-align: center;
-}
