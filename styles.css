@@ -5,15 +5,16 @@
 body {
     font-family: Georgia;
     margin: 0;
+    background-image: url('project-assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
+    background-size: cover;
+    background-position: center bottom;
 }
 
 header {
-    height: 100vh;
-    background-image: url('project-assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
-    background-size: cover;
     display: flex;
     align-items: center;
     flex-flow: column;
+    min-height: 100vh;
 }
 
 h1 {
@@ -26,7 +27,7 @@ h1 {
     background-color: rgba(224,216,222, 0.5);
     padding: 30px 40px;
     border-radius: 5px;
-    margin: 20px 40px;
+    width: 90%;
 }
 
 h2 {
@@ -35,4 +36,110 @@ h2 {
 
 p {
     font-size: 1.25rem;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 90%;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.inputBox {
+    width: 150px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.userInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    margin: 10px;
+    font-size: 1.25rem;
+}
+
+#button {
+    background-color: #355f4d;
+    border-radius: 10px;
+    border: #E0D8DE 2px solid;
+    color: #E0D8DE;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+#button:hover {
+    background-color: #593837;
+}
+
+#gridContainer {
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    margin: 20px 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+section {
+    display: none;
+    flex-flow: column;
+}
+
+.gridItem {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    background-size: cover;
+    height: 200px;
+    width: 200px;
+    margin: 10px 20px;
+}
+
+div[data-hit ~= "1"] {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    color: transparent;
+}
+
+div[data-hit ~= "0"] {
+    background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+    color: transparent;
+}
+
+@media screen and (max-width: 640px) {
+    .inputContainer {
+        flex-flow: column;
+    }
+    .gridItem {
+        height: 100px;
+        width: 100px;
+        margin: 5px 10px;
+    }
+    #gridContainer {
+        padding: 20px 10px;
+        justify-content: space-evenly;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+#gameTitle {
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    text-align: center;
 }
