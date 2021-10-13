@@ -1,37 +1,9 @@
-
-//function to generate all game tiles
-document.querySelector('.form').addEventListener('submit', (e) => {
-    //stops form from submitting
-    e.preventDefault()
-    //Defining total grid size, number of lynx and misses from user input
-    const numLynx = parseInt(document.getElementById('numLynx').value)
-    const gridSize = parseInt(document.getElementById('gridSize').value)
-    const miss = gridSize - numLynx
-
-    //reset
-    document.getElementById('gridContainer').innerHTML = ''
-    document.getElementById('errorMessage').textContent = ''
-
-    //validates form input
-    if (!validateInput(gridSize, numLynx)) {
-        document.getElementById('errorMessage').textContent = errorMessage
-        document.getElementById('gameContainer').style.display = "none"
-        document.querySelector('header').style.minHeight = "100vh"
-    } else {
-        //execute function
-        generateSquares(numLynx, miss)
-        turnCard(numLynx, miss)
-        //sets the grid container display to default
-        document.getElementById('gameContainer').style.display = "flex"
-        //scroll to top of game play area
-        document.querySelector('#gameContainer').scrollIntoView({
-            behavior: 'smooth'
-        })
-        document.querySelector('header').style.minHeight = "auto"
-    }
-})
-
 let errorMessage = ""
+let hits = 0
+let misses = 0
+const modalDiv = document.querySelector(".endModal")
+const modalBlur = document.querySelector(".modal-blur")
+const playAgainBtn = document.querySelector(".play-again")
 
 function validateInput(gridSize, numLynx) {
     if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)){
@@ -54,7 +26,6 @@ function validateInput(gridSize, numLynx) {
         errorMessage = 'Number of lynx can not exceed half of the number you picked for the Forest size'
         return false
     }
-
     return true
 }
 
@@ -80,8 +51,6 @@ function generateSquares(numLynx, miss) {
         document.getElementById('gridContainer').innerHTML += square
     })
 }
-let hits = 0
-let misses = 0
 
 function turnCard(numLynx, miss) {
     // Grabs all gridItem divs as gridItems to be used in forEach
@@ -94,14 +63,11 @@ function turnCard(numLynx, miss) {
                 hits++
                 item.dataset.hit = '2'
                 if (hits === numLynx) {
-                    console.log("open modal - you win")
                     modalDiv.style.display = "inline-block"
                     document.querySelector('.scoreMessage').textContent = 'woooh you found all the Lynx!'
                     modalBlur.style.filter = "blur(2px)"
-
                     playAgainBtn.addEventListener("click", () => {
                         newGame()
-                        console.log('clicked')
                     })
                     document.querySelector('#mainTitle').scrollIntoView({
                         behavior: 'smooth'
@@ -114,13 +80,11 @@ function turnCard(numLynx, miss) {
                 misses++
                 item.dataset.hit = '2'
                 if (miss === misses) {
-                    console.log("open modal - died")
                     modalDiv.style.display = "inline-block"
                     document.querySelector('.scoreMessage').textContent = 'Unlucky, too much venom you need to rest'
                     modalBlur.style.filter = "blur(2px)"
                     playAgainBtn.addEventListener("click", () => {
                         newGame()
-                        console.log('clicked')
                     })
                     document.querySelector('#mainTitle').scrollIntoView({
                         behavior: 'smooth'
@@ -129,7 +93,6 @@ function turnCard(numLynx, miss) {
             }
         })
     })
-
 }
 
 function newGame() {
@@ -137,7 +100,6 @@ function newGame() {
     document.getElementById('gridContainer').innerHTML = ''
 
     //hide the game element
-
     document.getElementById('gameContainer').style.display="none"
 
     //reset form values to ''
@@ -151,14 +113,44 @@ function newGame() {
     //resets game window
     document.querySelector('header').style.minHeight = "100vh"
 
+    //hides modal
     modalDiv.style.display = "none"
     modalBlur.style.filter = "none"
 }
 
-const modalDiv = document.querySelector(".endModal")
-const modalBlur = document.querySelector(".modal-blur")
-const playAgainBtn = document.querySelector(".play-again")
+//generate all game tiles
+document.querySelector('.form').addEventListener('submit', (e) => {
+    //stops form from submitting
+    e.preventDefault()
+    //Defining total grid size, number of lynx and misses from user input
+    const numLynx = parseInt(document.getElementById('numLynx').value)
+    const gridSize = parseInt(document.getElementById('gridSize').value)
+    const miss = gridSize - numLynx
 
+    //reset
+    document.getElementById('gridContainer').innerHTML = ''
+    document.getElementById('errorMessage').textContent = ''
+
+    //validates form input
+    if (!validateInput(gridSize, numLynx)) {
+        document.getElementById('errorMessage').textContent = errorMessage
+        document.getElementById('gameContainer').style.display = "none"
+        document.querySelector('header').style.minHeight = "100vh"
+    } else {
+        //execute function
+        hits = 0
+        misses = 0
+        generateSquares(numLynx, miss)
+        turnCard(numLynx, miss)
+        //sets the grid container display to default
+        document.getElementById('gameContainer').style.display = "flex"
+        //scroll to top of game play area
+        document.querySelector('#gameContainer').scrollIntoView({
+            behavior: 'smooth'
+        })
+        document.querySelector('header').style.minHeight = "auto"
+    }
+})
 
 
 
