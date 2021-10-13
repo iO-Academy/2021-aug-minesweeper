@@ -121,19 +121,17 @@ div[data-hit ~= "2"]{
     color: transparent;
 }
 
-.endModal {
+.endModalContent {
     display: none;
     width: 70%;
     height: 30%;
     border: 2px solid gray;
     text-align: center ;
     padding: 10px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: #355f4d;
     color: #E0D8DE;
     border-radius: 10px;
@@ -146,14 +144,6 @@ div[data-hit ~= "2"]{
             92px 89px 80px rgba(0, 0, 0, 0.14)
 ;
 
-}
-
-.endModalContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
 }
 
 .endModalContent button {
@@ -171,6 +161,8 @@ div[data-hit ~= "2"]{
 
 .endModalContent button:hover {
     background-color: #593837;
+    color: #E0D8DE;
+    cursor: pointer;
 }
 
 .modal-blur {
@@ -196,6 +188,12 @@ div[data-hit ~= "2"]{
     }
     h1 {
         font-size: 3rem;
+    }
+    .endModalContent {
+        height: 30%;
+    }
+    .endModalContent button {
+        margin-top: 25px;
     }
 }
 

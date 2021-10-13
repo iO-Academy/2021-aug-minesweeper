@@ -1,9 +1,9 @@
 let errorMessage = ""
 let hits = 0
 let misses = 0
-const modalDiv = document.querySelector(".endModal")
+const modalDiv = document.querySelector(".endModalContent")
 const modalBlur = document.querySelector(".modal-blur")
-const playAgainBtn = document.querySelector(".play-again")
+const playAgainBtn = document.querySelector(".endModalContent button")
 
 function validateInput(gridSize, numLynx) {
     if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)){
@@ -29,15 +29,15 @@ function validateInput(gridSize, numLynx) {
     return true
 }
 
-function generateSquares(numLynx, miss) {
+function generateSquares(numLynx, numSnakes) {
     //create empty array
     let squares = []
     //For every hit we are putting a div into the array with data-hit 1
     for (i = 0; i < numLynx; i++) {
         squares.push('<div class="gridItem" data-hit="1"></div>')
     }
-    //For every miss we are putting a div into the array with data-hit 0
-    for (i = 0; i < miss; i++) {
+    //For every snake we are putting a div into the array with data-hit 0
+    for (i = 0; i < numSnakes; i++) {
         squares.push('<div class="gridItem" data-hit="0" ></div>')
     }
     //shuffle the array
@@ -52,7 +52,7 @@ function generateSquares(numLynx, miss) {
     })
 }
 
-function turnCard(numLynx, miss) {
+function turnCard(numLynx, numSnakes) {
     // Grabs all gridItem divs as gridItems to be used in forEach
     let gridItems = document.querySelectorAll('.gridItem')
     gridItems.forEach((item) => {
@@ -79,7 +79,7 @@ function turnCard(numLynx, miss) {
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
                 item.dataset.hit = '2'
-                if (miss === misses) {
+                if (numSnakes === misses) {
                     modalDiv.style.display = "inline-block"
                     document.querySelector('.scoreMessage').textContent = 'Unlucky, too much venom you need to rest'
                     modalBlur.style.filter = "blur(2px)"
@@ -125,7 +125,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     //Defining total grid size, number of lynx and misses from user input
     const numLynx = parseInt(document.getElementById('numLynx').value)
     const gridSize = parseInt(document.getElementById('gridSize').value)
-    const miss = gridSize - numLynx
+    const numSnakes = gridSize - numLynx
 
     //reset
     document.getElementById('gridContainer').innerHTML = ''
@@ -140,8 +140,8 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         //execute function
         hits = 0
         misses = 0
-        generateSquares(numLynx, miss)
-        turnCard(numLynx, miss)
+        generateSquares(numLynx, numSnakes)
+        turnCard(numLynx, numSnakes)
         //sets the grid container display to default
         document.getElementById('gameContainer').style.display = "flex"
         //scroll to top of game play area
