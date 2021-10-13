@@ -98,10 +98,11 @@ function turnCard() {
 }
 
 function newGame() {
-    //removes grid
+    //removes contents of the grid
     document.getElementById('gridContainer').innerHTML = ''
 
-    //hide the header
+    //hide the game element
+
     document.getElementById('hide').style.display="none"
 
     //reset form values to ''
@@ -111,6 +112,7 @@ function newGame() {
     //reshow splash screen
     document.querySelector('#mainTitle').scrollIntoView({
         behavior: 'smooth'})
+
 
     //resets game window
     document.querySelector('header').style.minHeight = "100vh"
@@ -133,3 +135,4 @@ modalEvent.addEventListener("click", () =>{
 playAgainBtn.addEventListener("click", () => {
     newGame()
 })
+
