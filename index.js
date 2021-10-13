@@ -96,3 +96,32 @@ function turnCard() {
         })
     })
 }
+
+function newGame() {
+    //removes grid
+    document.getElementById('gridContainer').innerHTML = ''
+
+    //hide the header
+    document.getElementById('hide').style.display="none"
+
+    //reset form values to ''
+    document.getElementById('numLynx').value = ''
+    document.getElementById('gridSize').value = ''
+
+    //reshow splash screen
+    document.querySelector('#mainTitle').scrollIntoView({
+        behavior: 'smooth'})
+}
+
+//pop up modal
+document.querySelector(".fake-event").addEventListener("click", () => {
+    document.querySelector(".endModal").style.display = "inline-block"
+    document.querySelector(".modal-blur").style.filter = "blur(2px)"
+})
+
+//play again button
+document.querySelector(".play-again").addEventListener('click', () => {
+    newGame()
+    document.querySelector(".endModal").style.display = "none"
+    document.querySelector(".modal-blur").style.filter= "none"
+})
