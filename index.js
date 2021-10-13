@@ -96,3 +96,20 @@ function turnCard() {
         })
     })
 }
+
+function newGame() {
+    //removes contents of the grid
+    document.getElementById('gridContainer').innerHTML = ''
+
+    //hide the game element
+    document.getElementById('hide').style.display="none"
+
+    //reset form values to ''
+    document.getElementById('numLynx').value = ''
+    document.getElementById('gridSize').value = ''
+
+    //reshow splash screen
+    document.querySelector('#mainTitle').scrollIntoView({
+        behavior: 'smooth'})
+
+}
