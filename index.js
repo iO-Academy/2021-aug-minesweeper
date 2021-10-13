@@ -102,6 +102,7 @@ function newGame() {
     document.getElementById('gridContainer').innerHTML = ''
 
     //hide the game element
+
     document.getElementById('hide').style.display="none"
 
     //reset form values to ''
@@ -112,4 +113,26 @@ function newGame() {
     document.querySelector('#mainTitle').scrollIntoView({
         behavior: 'smooth'})
 
+
+    //resets game window
+    document.querySelector('header').style.minHeight = "100vh"
+
+    modalDiv.style.display = "none"
+    modalBlur.style.filter = "none"
 }
+
+const modalDiv = document.querySelector(".endModal")
+const modalBlur = document.querySelector(".modal-blur")
+//populate line 125 with modal call
+const modalEvent = document.querySelector("")
+const playAgainBtn = document.querySelector(".play-again")
+
+modalEvent.addEventListener("click", () =>{
+    modalDiv.style.display = "inline-block"
+    modalBlur.style.filter = "blur(2px)"
+})
+
+playAgainBtn.addEventListener("click", () => {
+    newGame()
+})
+
