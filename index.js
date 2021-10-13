@@ -15,16 +15,16 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     //validates form input
     if (!validateInput(gridSize, numLynx)) {
         document.getElementById('errorMessage').textContent = errorMessage
-        document.getElementById('hide').style.display = "none"
+        document.getElementById('gameContainer').style.display = "none"
         document.querySelector('header').style.minHeight = "100vh"
     } else {
         //execute function
         generateSquares(numLynx, miss)
         turnCard(numLynx, miss)
         //sets the grid container display to default
-        document.getElementById('hide').style.display = "flex"
+        document.getElementById('gameContainer').style.display = "flex"
         //scroll to top of game play area
-        document.querySelector('#gameTitle').scrollIntoView({
+        document.querySelector('#gameContainer').scrollIntoView({
             behavior: 'smooth'
         })
         document.querySelector('header').style.minHeight = "auto"
@@ -82,10 +82,6 @@ function generateSquares(numLynx, miss) {
 }
 let hits = 0
 let misses = 0
-// let numLynx = parseInt(document.getElementById('numLynx').value)
-// let gridSize = parseInt(document.getElementById('gridSize').value)
-// let modalDiv = document.getElementById('modal-div')
-//  let miss = gridSize - numLynx
 
 function turnCard(numLynx, miss) {
     // Grabs all gridItem divs as gridItems to be used in forEach
@@ -99,8 +95,17 @@ function turnCard(numLynx, miss) {
                 item.dataset.hit = '2'
                 if (hits === numLynx) {
                     console.log("open modal - you win")
-                    // modalDiv.style.display = "block"
-                    //  endModal.innerHTML = '<p>woooh you found all the Lynx!</p>'
+                    modalDiv.style.display = "inline-block"
+                    document.querySelector('.scoreMessage').textContent = 'woooh you found all the Lynx!'
+                    modalBlur.style.filter = "blur(2px)"
+
+                    playAgainBtn.addEventListener("click", () => {
+                        newGame()
+                        console.log('clicked')
+                    })
+                    document.querySelector('#mainTitle').scrollIntoView({
+                        behavior: 'smooth'
+                    })
                 }
             }
             if (item.dataset.hit === '0'){
@@ -110,8 +115,16 @@ function turnCard(numLynx, miss) {
                 item.dataset.hit = '2'
                 if (miss === misses) {
                     console.log("open modal - died")
-                    // modalDiv.style.display = "block"
-                    //   endModal.innerHTML = '<p>Unlucky, too much venom you need to rest</p>'
+                    modalDiv.style.display = "inline-block"
+                    document.querySelector('.scoreMessage').textContent = 'Unlucky, too much venom you need to rest'
+                    modalBlur.style.filter = "blur(2px)"
+                    playAgainBtn.addEventListener("click", () => {
+                        newGame()
+                        console.log('clicked')
+                    })
+                    document.querySelector('#mainTitle').scrollIntoView({
+                        behavior: 'smooth'
+                    })
                 }
             }
         })
@@ -125,7 +138,7 @@ function newGame() {
 
     //hide the game element
 
-    document.getElementById('hide').style.display="none"
+    document.getElementById('gameContainer').style.display="none"
 
     //reset form values to ''
     document.getElementById('numLynx').value = ''
@@ -144,17 +157,8 @@ function newGame() {
 
 const modalDiv = document.querySelector(".endModal")
 const modalBlur = document.querySelector(".modal-blur")
-//populate line 125 with modal call
-const modalEvent = document.querySelector("")
 const playAgainBtn = document.querySelector(".play-again")
 
-modalEvent.addEventListener("click", () =>{
-    modalDiv.style.display = "inline-block"
-    modalBlur.style.filter = "blur(2px)"
-})
 
-playAgainBtn.addEventListener("click", () => {
-    newGame()
-})
 
 
