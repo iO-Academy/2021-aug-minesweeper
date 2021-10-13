@@ -15,6 +15,8 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     //validates form input
     if (!validateInput(gridSize, numLynx)) {
         document.getElementById('errorMessage').textContent = errorMessage
+        document.getElementById('hide').style.display = "none"
+        document.querySelector('header').style.minHeight = "100vh"
     } else {
         //execute function
         generateSquares(numLynx, miss)
@@ -25,6 +27,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         document.querySelector('#gameTitle').scrollIntoView({
             behavior: 'smooth'
         })
+        document.querySelector('header').style.minHeight = "auto"
     }
 })
 
