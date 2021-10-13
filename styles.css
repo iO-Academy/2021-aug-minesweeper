@@ -111,11 +111,12 @@ section {
 
 div[data-hit ~= "1"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
-    color: transparent;
 }
 
 div[data-hit ~= "0"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+}
+div[data-hit ~= "2"]{
     color: transparent;
 }
 

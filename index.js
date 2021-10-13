@@ -20,7 +20,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     } else {
         //execute function
         generateSquares(numLynx, miss)
-        turnCard()
+        turnCard(numLynx, miss)
         //sets the grid container display to default
         document.getElementById('hide').style.display = "flex"
         //scroll to top of game play area
@@ -80,21 +80,43 @@ function generateSquares(numLynx, miss) {
         document.getElementById('gridContainer').innerHTML += square
     })
 }
+let hits = 0
+let misses = 0
+// let numLynx = parseInt(document.getElementById('numLynx').value)
+// let gridSize = parseInt(document.getElementById('gridSize').value)
+// let modalDiv = document.getElementById('modal-div')
+//  let miss = gridSize - numLynx
 
-function turnCard() {
+function turnCard(numLynx, miss) {
     // Grabs all gridItem divs as gridItems to be used in forEach
     let gridItems = document.querySelectorAll('.gridItem')
     gridItems.forEach((item) => {
         item.addEventListener('click', () => {
-            if(item.dataset.hit === '1') {
+            if (item.dataset.hit === '1') {
                 item.style.backgroundImage = "url('project-assets/babylynx2.jpg')"
                 item.textContent = 'Hooray, you\'ve found a lynx!'
-            } else {
+                hits++
+                item.dataset.hit = '2'
+                if (hits === numLynx) {
+                    console.log("open modal - you win")
+                    // modalDiv.style.display = "block"
+                    //  endModal.innerHTML = '<p>woooh you found all the Lynx!</p>'
+                }
+            }
+            if (item.dataset.hit === '0'){
                 item.style.backgroundImage = "url('project-assets/snakeattack.png')"
                 item.textContent = 'OUCH! That\'s a snake'
+                misses++
+                item.dataset.hit = '2'
+                if (miss === misses) {
+                    console.log("open modal - died")
+                    // modalDiv.style.display = "block"
+                    //   endModal.innerHTML = '<p>Unlucky, too much venom you need to rest</p>'
+                }
             }
         })
     })
+
 }
 
 function newGame() {
@@ -111,5 +133,4 @@ function newGame() {
     //reshow splash screen
     document.querySelector('#mainTitle').scrollIntoView({
         behavior: 'smooth'})
-
 }
