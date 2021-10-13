@@ -1,37 +1,9 @@
-
-//function to generate all game tiles
-document.querySelector('.form').addEventListener('submit', (e) => {
-    //stops form from submitting
-    e.preventDefault()
-    //Defining total grid size, number of lynx and misses from user input
-    const numLynx = parseInt(document.getElementById('numLynx').value)
-    const gridSize = parseInt(document.getElementById('gridSize').value)
-    const miss = gridSize - numLynx
-
-    //reset
-    document.getElementById('gridContainer').innerHTML = ''
-    document.getElementById('errorMessage').textContent = ''
-
-    //validates form input
-    if (!validateInput(gridSize, numLynx)) {
-        document.getElementById('errorMessage').textContent = errorMessage
-        document.getElementById('hide').style.display = "none"
-        document.querySelector('header').style.minHeight = "100vh"
-    } else {
-        //execute function
-        generateSquares(numLynx, miss)
-        turnCard()
-        //sets the grid container display to default
-        document.getElementById('hide').style.display = "flex"
-        //scroll to top of game play area
-        document.querySelector('#gameTitle').scrollIntoView({
-            behavior: 'smooth'
-        })
-        document.querySelector('header').style.minHeight = "auto"
-    }
-})
-
 let errorMessage = ""
+let hits = 0
+let misses = 0
+const modalDiv = document.querySelector(".endModal")
+const modalBlur = document.querySelector(".modal-blur")
+const playAgainBtn = document.querySelector(".play-again")
 
 function validateInput(gridSize, numLynx) {
     if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)){
@@ -54,7 +26,6 @@ function validateInput(gridSize, numLynx) {
         errorMessage = 'Number of lynx can not exceed half of the number you picked for the Forest size'
         return false
     }
-
     return true
 }
 
@@ -81,17 +52,44 @@ function generateSquares(numLynx, miss) {
     })
 }
 
-function turnCard() {
+function turnCard(numLynx, miss) {
     // Grabs all gridItem divs as gridItems to be used in forEach
     let gridItems = document.querySelectorAll('.gridItem')
     gridItems.forEach((item) => {
         item.addEventListener('click', () => {
-            if(item.dataset.hit === '1') {
+            if (item.dataset.hit === '1') {
                 item.style.backgroundImage = "url('project-assets/babylynx2.jpg')"
                 item.textContent = 'Hooray, you\'ve found a lynx!'
-            } else {
+                hits++
+                item.dataset.hit = '2'
+                if (hits === numLynx) {
+                    modalDiv.style.display = "inline-block"
+                    document.querySelector('.scoreMessage').textContent = 'woooh you found all the Lynx!'
+                    modalBlur.style.filter = "blur(2px)"
+                    playAgainBtn.addEventListener("click", () => {
+                        newGame()
+                    })
+                    document.querySelector('#mainTitle').scrollIntoView({
+                        behavior: 'smooth'
+                    })
+                }
+            }
+            if (item.dataset.hit === '0'){
                 item.style.backgroundImage = "url('project-assets/snakeattack.png')"
                 item.textContent = 'OUCH! That\'s a snake'
+                misses++
+                item.dataset.hit = '2'
+                if (miss === misses) {
+                    modalDiv.style.display = "inline-block"
+                    document.querySelector('.scoreMessage').textContent = 'Unlucky, too much venom you need to rest'
+                    modalBlur.style.filter = "blur(2px)"
+                    playAgainBtn.addEventListener("click", () => {
+                        newGame()
+                    })
+                    document.querySelector('#mainTitle').scrollIntoView({
+                        behavior: 'smooth'
+                    })
+                }
             }
         })
     })
@@ -102,8 +100,7 @@ function newGame() {
     document.getElementById('gridContainer').innerHTML = ''
 
     //hide the game element
-
-    document.getElementById('hide').style.display="none"
+    document.getElementById('gameContainer').style.display="none"
 
     //reset form values to ''
     document.getElementById('numLynx').value = ''
@@ -113,26 +110,47 @@ function newGame() {
     document.querySelector('#mainTitle').scrollIntoView({
         behavior: 'smooth'})
 
-
     //resets game window
     document.querySelector('header').style.minHeight = "100vh"
 
+    //hides modal
     modalDiv.style.display = "none"
     modalBlur.style.filter = "none"
 }
 
-const modalDiv = document.querySelector(".endModal")
-const modalBlur = document.querySelector(".modal-blur")
-//populate line 125 with modal call
-const modalEvent = document.querySelector("")
-const playAgainBtn = document.querySelector(".play-again")
+//generate all game tiles
+document.querySelector('.form').addEventListener('submit', (e) => {
+    //stops form from submitting
+    e.preventDefault()
+    //Defining total grid size, number of lynx and misses from user input
+    const numLynx = parseInt(document.getElementById('numLynx').value)
+    const gridSize = parseInt(document.getElementById('gridSize').value)
+    const miss = gridSize - numLynx
 
-modalEvent.addEventListener("click", () =>{
-    modalDiv.style.display = "inline-block"
-    modalBlur.style.filter = "blur(2px)"
+    //reset
+    document.getElementById('gridContainer').innerHTML = ''
+    document.getElementById('errorMessage').textContent = ''
+
+    //validates form input
+    if (!validateInput(gridSize, numLynx)) {
+        document.getElementById('errorMessage').textContent = errorMessage
+        document.getElementById('gameContainer').style.display = "none"
+        document.querySelector('header').style.minHeight = "100vh"
+    } else {
+        //execute function
+        hits = 0
+        misses = 0
+        generateSquares(numLynx, miss)
+        turnCard(numLynx, miss)
+        //sets the grid container display to default
+        document.getElementById('gameContainer').style.display = "flex"
+        //scroll to top of game play area
+        document.querySelector('#gameContainer').scrollIntoView({
+            behavior: 'smooth'
+        })
+        document.querySelector('header').style.minHeight = "auto"
+    }
 })
 
-playAgainBtn.addEventListener("click", () => {
-    newGame()
-})
+
 

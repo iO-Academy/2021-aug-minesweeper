@@ -44,7 +44,7 @@ p {
     background-color: rgba(224,216,222, 0.5);
     padding: 30px 40px;
     border-radius: 5px;
-    margin-top: 20px;
+    margin:20px 0;
     width: 90%;
 }
 
@@ -87,10 +87,6 @@ p {
 }
 
 #gridContainer {
-    background-color: rgba(224,216,222, 0.5);
-    padding: 30px 40px;
-    border-radius: 5px;
-    margin: 20px 40px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -99,6 +95,11 @@ p {
 section {
     display: none;
     flex-flow: column;
+    background-color: rgba(224,216,222, 0.5);
+    padding: 30px 40px;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .gridItem {
@@ -111,11 +112,12 @@ section {
 
 div[data-hit ~= "1"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
-    color: transparent;
 }
 
 div[data-hit ~= "0"] {
     background-image: url("project-assets/ren-ran-bBiuSdck8tU-unsplash.jpg");
+}
+div[data-hit ~= "2"]{
     color: transparent;
 }
 
@@ -161,7 +163,7 @@ div[data-hit ~= "0"] {
     color: #355f4d;
     padding: 10px;
     transition: 0.3s;
-    margin-top: 100px;
+    margin-top: 50px;
     width: 50%;
     position: relative;
     bottom: 0;
@@ -175,14 +177,7 @@ div[data-hit ~= "0"] {
     filter: none;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 #gameTitle {
-    background-color: rgba(224,216,222, 0.5);
-    padding: 30px 40px;
-    border-radius: 5px;
     text-align: center;
 }
 
