@@ -6,6 +6,7 @@ const modalDiv = document.querySelector(".endModalContent")
 const modalBlur = document.querySelector(".modal-blur")
 const playAgainBtn = document.querySelector(".endModalContent button")
 
+
 function validateInput(gridSize, numLynx) {
     if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)){
         errorMessage = 'Please only input whole numbers'
@@ -65,7 +66,7 @@ function decideOutcome(modalText = 'OOPS! Something went wrong') {
     })
 }
 
-function turnCard(numLynx, numSnakes) {
+function turnCard(numLynx, numSnakes, lives) {
     // Grabs all gridItem divs as gridItems to be used in forEach
     let gridItems = document.querySelectorAll('.gridItem')
     gridItems.forEach((item) => {
@@ -84,6 +85,7 @@ function turnCard(numLynx, numSnakes) {
                 item.style.backgroundImage = "url('project-assets/snakeattack.png')"
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
+                lives--
                 item.dataset.hit = '2'
                 const modalText = 'Unlucky, too much venom you need to rest'
                 if (numSnakes === misses) {
@@ -110,6 +112,17 @@ function newGame() {
     modalBlur.style.filter = "none"
 }
 
+function generateLives(numLynx) {
+    let lives = Math.floor(numLynx / 2)
+    if (lives > 6) {
+        lives = 6
+    }
+    if (lives < 1) {
+        lives = 1
+    }
+    return lives.toString()
+}
+
 //generate all game tiles
 document.querySelector('.form').addEventListener('submit', (e) => {
     //stops form from submitting
@@ -118,7 +131,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     const numLynx = parseInt(document.getElementById('numLynx').value)
     const gridSize = parseInt(document.getElementById('gridSize').value)
     const numSnakes = gridSize - numLynx
-
+    let lives = generateLives(numLynx)
     //reset
     document.getElementById('gridContainer').innerHTML = ''
     document.getElementById( 'errorMessage').textContent = ''
@@ -132,7 +145,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         hits = 0
         misses = 0
         generateSquares(numLynx, numSnakes)
-        turnCard(numLynx, numSnakes)
+        turnCard(numLynx, numSnakes, lives)
         //sets the grid container display to default
         document.getElementById('gameContainer').style.display = "flex"
         //scroll to top of game play area
