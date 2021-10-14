@@ -6,7 +6,7 @@ const modalBlur = document.querySelector(".modal-blur")
 const playAgainBtn = document.querySelector(".endModalContent button")
 
 function validateInput(gridSize, numLynx) {
-    if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)){
+    if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)) {
         errorMessage = 'Please only input whole numbers'
         return false
     }
@@ -79,7 +79,7 @@ function turnCard(numLynx, numSnakes, lives) {
                    decideOutcome(modalText)
                 }
             }
-            if (item.dataset.hit === '0'){
+            if (item.dataset.hit === '0') {
                 item.style.backgroundImage = "url('project-assets/snakeattack.png')"
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
@@ -115,7 +115,7 @@ function newGame() {
     modalBlur.style.filter = "none"
 
     //reset preLives counter
-    document.getElementById("preLives").textContent = "-"
+        document.getElementById("preLives").textContent = "-"
 }
 
 function generateLives(numLynx) {
@@ -131,9 +131,14 @@ function generateLives(numLynx) {
 
 document.getElementById('numLynx').addEventListener("input", () => {
     let lynxInputValue = parseInt(document.getElementById("numLynx").value)
+
     preLives = generateLives(lynxInputValue)
-    if(preLives > 0){
+    if ((Math.sign(lynxInputValue) === -1 ) || (Math.sign(lynxInputValue) === 0)) {
+        document.getElementById("preLives").textContent = "-"
+    } else if (preLives > 0) {
         document.getElementById("preLives").textContent = preLives
+    } else {
+        document.getElementById("preLives").textContent = "-"
     }
 })
 
@@ -168,4 +173,3 @@ document.querySelector('.form').addEventListener('submit', (e) => {
             behavior: 'smooth'
         })}
 })
-
