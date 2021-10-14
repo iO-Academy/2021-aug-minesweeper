@@ -158,6 +158,8 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     let lives = generateLives(numLynx)
 
     //updates lives bar
+    hits = 0
+    misses = 0
     document.getElementById('livesDisplay').textContent = 'Number of lives: ' + lives
     document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
 
@@ -171,8 +173,6 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         document.getElementById('gameContainer').style.display = "none"
     } else {
         //execute function
-        hits = 0
-        misses = 0
         generateSquares(numLynx, numSnakes)
         turnCard(numLynx, numSnakes, lives)
         //sets the grid container display to default
