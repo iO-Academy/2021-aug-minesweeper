@@ -103,6 +103,7 @@ section {
     border-radius: 5px;
     margin: 0 auto;
     width: 90%;
+    position: relative;
 }
 
 .gridItem {
@@ -175,6 +176,18 @@ div[data-hit ~= "2"]{
     text-align: center;
 }
 
+#livesCounterBar {
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #E0D8DE;
+    background-color: #593837;
+    height: 100px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 @media screen and (max-width: 900px) {
     #lynxInput {
         flex-direction: column;
@@ -204,12 +217,20 @@ div[data-hit ~= "2"]{
     .endModalContent button {
         margin-top: 0;
     }
+    #livesCounterBar {
+        flex-flow: column;
+    }
+    #livesCounterBar h2 {
+        margin: 0;
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 410px) {
-    .inputContainer{
+    .inputContainer {
         text-align: center;
     }
+
     .scoreMessage {
         font-size: 20px;
     }
