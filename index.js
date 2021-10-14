@@ -98,14 +98,8 @@ function turnCard(numLynx, numSnakes, lives) {
             }
 
             //updates lives bar
-            if(lives === 1){
-                document.getElementById('livesDisplay').textContent = 'You have 1 life'
-            } else {
-                document.getElementById('livesDisplay').textContent = 'You have ' + lives + ' lives'
-            }
-
+            document.getElementById('livesDisplay').textContent = 'Number of lives: ' + lives
             document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
-
         })
     })
 }
@@ -155,12 +149,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     let lives = generateLives(numLynx)
 
     //updates lives bar
-    if(lives === 1){
-        document.getElementById('livesDisplay').textContent = 'You have 1 life'
-    } else {
-        document.getElementById('livesDisplay').textContent = 'You have ' + lives + ' lives'
-    }
-
+    document.getElementById('livesDisplay').textContent = 'Number of lives: ' + lives
     document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
 
     //reset

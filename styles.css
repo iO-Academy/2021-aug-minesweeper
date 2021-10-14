@@ -186,14 +186,6 @@ div[data-hit ~= "2"]{
     z-index: 1;
 }
 
-.livesDisplay {
-
-}
-
-.lynxFoundDisplay {
-
-}
-
 @media screen and (max-width: 640px) {
     .inputContainer {
         flex-flow: column;
@@ -215,6 +207,13 @@ div[data-hit ~= "2"]{
     }
     .endModalContent button {
         margin-top: 0;
+    }
+    #livesCounterBar {
+        flex-flow: column;
+    }
+    #livesCounterBar h2 {
+        margin: 0;
+        font-size: 20px;
     }
 }
 
