@@ -121,6 +121,9 @@ function newGame() {
     document.getElementById('numLynx').value = ''
     document.getElementById('gridSize').value = ''
 
+    //hides lives bar
+    document.getElementById('livesCounterBar').style.display = 'none'
+
     //hides modal
     modalDiv.style.display = "none"
     modalBlur.style.filter = "none"
