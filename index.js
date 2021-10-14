@@ -6,7 +6,6 @@ const modalDiv = document.querySelector(".endModalContent")
 const modalBlur = document.querySelector(".modal-blur")
 const playAgainBtn = document.querySelector(".endModalContent button")
 
-
 function validateInput(gridSize, numLynx) {
     if (!Number.isInteger(gridSize) || !Number.isInteger(numLynx)){
         errorMessage = 'Please only input whole numbers'
@@ -86,11 +85,16 @@ function turnCard(numLynx, numSnakes, lives) {
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
                 lives--
+                console.log(lives)
                 item.dataset.hit = '2'
                 const modalText = 'Unlucky, too much venom you need to rest'
                 if (numSnakes === misses) {
                    decideOutcome(modalText)
                 }
+            }
+            if (lives === 0) {
+                const modalText = 'Too many snake bites... Sorry!'
+                decideOutcome(modalText)
             }
         })
     })
@@ -120,7 +124,7 @@ function generateLives(numLynx) {
     if (lives < 1) {
         lives = 1
     }
-    return lives.toString()
+    return lives
 }
 
 //generate all game tiles
@@ -153,6 +157,4 @@ document.querySelector('.form').addEventListener('submit', (e) => {
             behavior: 'smooth'
         })}
 })
-
-
 
