@@ -96,6 +96,10 @@ function turnCard(numLynx, numSnakes, lives) {
                 const modalText = 'Too many snake bites... Sorry!'
                 decideOutcome(modalText)
             }
+
+            //updates lives bar
+            document.getElementById('livesDisplay').textContent = 'Number of lives: ' + lives
+            document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
         })
     })
 }
@@ -110,6 +114,9 @@ function newGame() {
     //reset form values to ''
     document.getElementById('numLynx').value = ''
     document.getElementById('gridSize').value = ''
+
+    //hides lives bar
+    document.getElementById('livesCounterBar').style.display = 'none'
 
     //hides modal
     modalDiv.style.display = "none"
@@ -135,7 +142,16 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     const numLynx = parseInt(document.getElementById('numLynx').value)
     const gridSize = parseInt(document.getElementById('gridSize').value)
     const numSnakes = gridSize - numLynx
+
+    //displays lives counter bar
+    document.getElementById('livesCounterBar').style.display = 'flex'
+
     let lives = generateLives(numLynx)
+
+    //updates lives bar
+    document.getElementById('livesDisplay').textContent = 'Number of lives: ' + lives
+    document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
+
     //reset
     document.getElementById('gridContainer').innerHTML = ''
     document.getElementById( 'errorMessage').textContent = ''
@@ -156,5 +172,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         document.querySelector('#gameContainer').scrollIntoView({
             behavior: 'smooth'
         })}
+
 })
+
 
