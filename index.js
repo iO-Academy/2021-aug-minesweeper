@@ -1,3 +1,4 @@
+
 let errorMessage = ""
 let hits = 0
 let misses = 0
@@ -52,6 +53,18 @@ function generateSquares(numLynx, numSnakes) {
     })
 }
 
+function decideOutcome(modalText) {
+    modalDiv.style.display = "inline-block"
+    document.querySelector('.scoreMessage').textContent = modalText
+    modalBlur.style.filter = "blur(2px)"
+    playAgainBtn.addEventListener("click", () => {
+        newGame()
+    })
+    document.querySelector('#mainTitle').scrollIntoView({
+        behavior: 'smooth'
+    })
+}
+
 function turnCard(numLynx, numSnakes) {
     // Grabs all gridItem divs as gridItems to be used in forEach
     let gridItems = document.querySelectorAll('.gridItem')
@@ -62,16 +75,9 @@ function turnCard(numLynx, numSnakes) {
                 item.textContent = 'Hooray, you\'ve found a lynx!'
                 hits++
                 item.dataset.hit = '2'
+                const modalText = 'woooh you found all the Lynx!'
                 if (hits === numLynx) {
-                    modalDiv.style.display = "inline-block"
-                    document.querySelector('.scoreMessage').textContent = 'woooh you found all the Lynx!'
-                    modalBlur.style.filter = "blur(2px)"
-                    playAgainBtn.addEventListener("click", () => {
-                        newGame()
-                    })
-                    document.querySelector('#mainTitle').scrollIntoView({
-                        behavior: 'smooth'
-                    })
+                   decideOutcome(modalText)
                 }
             }
             if (item.dataset.hit === '0'){
@@ -79,16 +85,9 @@ function turnCard(numLynx, numSnakes) {
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
                 item.dataset.hit = '2'
+                const modalText = 'Unlucky, too much venom you need to rest'
                 if (numSnakes === misses) {
-                    modalDiv.style.display = "inline-block"
-                    document.querySelector('.scoreMessage').textContent = 'Unlucky, too much venom you need to rest'
-                    modalBlur.style.filter = "blur(2px)"
-                    playAgainBtn.addEventListener("click", () => {
-                        newGame()
-                    })
-                    document.querySelector('#mainTitle').scrollIntoView({
-                        behavior: 'smooth'
-                    })
+                   decideOutcome(modalText)
                 }
             }
         })
@@ -100,18 +99,11 @@ function newGame() {
     document.getElementById('gridContainer').innerHTML = ''
 
     //hide the game element
-    document.getElementById('gameContainer').style.display="none"
+    document.getElementById('gameContainer').style.display = "none"
 
     //reset form values to ''
     document.getElementById('numLynx').value = ''
     document.getElementById('gridSize').value = ''
-
-    //reshow splash screen
-    document.querySelector('#mainTitle').scrollIntoView({
-        behavior: 'smooth'})
-
-    //resets game window
-    document.querySelector('header').style.minHeight = "100vh"
 
     //hides modal
     modalDiv.style.display = "none"
@@ -129,14 +121,12 @@ document.querySelector('.form').addEventListener('submit', (e) => {
 
     //reset
     document.getElementById('gridContainer').innerHTML = ''
-    document.getElementById('errorMessage').textContent = ''
+    document.getElementById( 'errorMessage').textContent = ''
 
     //validates form input
     if (!validateInput(gridSize, numLynx)) {
         document.getElementById('errorMessage').textContent = errorMessage
-        document.getElementById('gameContainer').style.display = "none"
-        document.querySelector('header').style.minHeight = "100vh"
-    } else {
+        document.getElementById('gameContainer').style.display = "none"} else {
         //execute function
         hits = 0
         misses = 0
@@ -147,9 +137,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         //scroll to top of game play area
         document.querySelector('#gameContainer').scrollIntoView({
             behavior: 'smooth'
-        })
-        document.querySelector('header').style.minHeight = "auto"
-    }
+        })}
 })
 
 
