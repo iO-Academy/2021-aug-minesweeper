@@ -65,7 +65,7 @@ function decideOutcome(modalText = 'OOPS! Something went wrong') {
     })
 }
 
-function turnCard(numLynx, numSnakes) {
+function turnCard(numLynx, numSnakes, lives) {
     // Grabs all gridItem divs as gridItems to be used in forEach
     let gridItems = document.querySelectorAll('.gridItem')
     gridItems.forEach((item) => {
@@ -84,20 +84,28 @@ function turnCard(numLynx, numSnakes) {
                 item.style.backgroundImage = "url('project-assets/snakeattack.png')"
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
+                lives--
+                console.log(lives)
                 item.dataset.hit = '2'
                 const modalText = 'Unlucky, too much venom you need to rest'
                 if (numSnakes === misses) {
                    decideOutcome(modalText)
                 }
             }
-            //updates lives bar
-            if(lives === 1){
-                document.getElementById('livesCounter').textContent = 'You have 1 life'
-            } else {
-                document.getElementById('livesCounter').textContent = 'You have ' + lives + ' lives'
+            if (lives === 0) {
+                const modalText = 'Too many snake bites... Sorry!'
+                decideOutcome(modalText)
             }
 
-            document.getElementById('lynxFound').textContent = 'Lynx found: ' + hits + '/' + numLynx
+            //updates lives bar
+            if(lives === 1){
+                document.getElementById('livesDisplay').textContent = 'You have 1 life'
+            } else {
+                document.getElementById('livesDisplay').textContent = 'You have ' + lives + ' lives'
+            }
+
+            document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
+
         })
     })
 }
@@ -118,6 +126,17 @@ function newGame() {
     modalBlur.style.filter = "none"
 }
 
+function generateLives(numLynx) {
+    let lives = Math.floor(numLynx / 2)
+    if (lives > 6) {
+        lives = 6
+    }
+    if (lives < 1) {
+        lives = 1
+    }
+    return lives
+}
+
 //generate all game tiles
 document.querySelector('.form').addEventListener('submit', (e) => {
     //stops form from submitting
@@ -127,16 +146,19 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     const gridSize = parseInt(document.getElementById('gridSize').value)
     const numSnakes = gridSize - numLynx
 
-    //display
+    //displays lives counter bar
     document.getElementById('livesCounterBar').style.display = 'flex'
+
+    let lives = generateLives(numLynx)
+
     //updates lives bar
     if(lives === 1){
-        document.getElementById('livesCounter').textContent = 'You have 1 life'
+        document.getElementById('livesDisplay').textContent = 'You have 1 life'
     } else {
-        document.getElementById('livesCounter').textContent = 'You have ' + lives + ' lives'
+        document.getElementById('livesDisplay').textContent = 'You have ' + lives + ' lives'
     }
 
-    document.getElementById('lynxFound').textContent = 'Lynx found: ' + hits + '/' + numLynx
+    document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
 
     //reset
     document.getElementById('gridContainer').innerHTML = ''
@@ -151,11 +173,14 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         hits = 0
         misses = 0
         generateSquares(numLynx, numSnakes)
-        turnCard(numLynx, numSnakes)
+        turnCard(numLynx, numSnakes, lives)
         //sets the grid container display to default
         document.getElementById('gameContainer').style.display = "flex"
         //scroll to top of game play area
         document.querySelector('#gameContainer').scrollIntoView({
             behavior: 'smooth'
         })}
+
 })
+
+
