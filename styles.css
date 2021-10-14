@@ -100,6 +100,7 @@ section {
     border-radius: 5px;
     margin: 0 auto;
     width: 90%;
+    position: relative;
 }
 
 .gridItem {
@@ -171,6 +172,24 @@ div[data-hit ~= "2"]{
 
 #gameTitle {
     text-align: center;
+}
+
+#livesCounterBar {
+    background-color: rgba(89, 56, 55, 0.72);
+    width: 100vw;
+    height: 100px;
+    position: sticky;
+    top: 20px;
+    left: calc(-50vw + 50%);
+    right: 0;
+}
+
+.livesDisplay {
+
+}
+
+.lynxFoundDisplay {
+
 }
 
 @media screen and (max-width: 640px) {
