@@ -178,7 +178,8 @@ div[data-hit ~= "2"]{
     display: none;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(89, 56, 55, 0.72);
+    color: #E0D8DE;
+    background-color: #593837;
     height: 100px;
     position: sticky;
     top: 0;
