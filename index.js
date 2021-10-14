@@ -1,4 +1,3 @@
-
 let errorMessage = ""
 let hits = 0
 let misses = 0
@@ -127,6 +126,15 @@ function generateLives(numLynx) {
     return lives
 }
 
+document.getElementById('numLynx').addEventListener("input", () => {
+    let preLives = parseInt(document.getElementById("numLynx").value)
+    preLives = generateLives(preLives)
+    if(preLives > 0){
+        document.getElementById("preLives").textContent = preLives
+    }
+})
+
+
 //generate all game tiles
 document.querySelector('.form').addEventListener('submit', (e) => {
     //stops form from submitting
@@ -136,6 +144,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     const gridSize = parseInt(document.getElementById('gridSize').value)
     const numSnakes = gridSize - numLynx
     let lives = generateLives(numLynx)
+
     //reset
     document.getElementById('gridContainer').innerHTML = ''
     document.getElementById( 'errorMessage').textContent = ''
