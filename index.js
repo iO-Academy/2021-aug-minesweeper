@@ -76,7 +76,7 @@ function turnCard(numLynx, numSnakes) {
                 hits++
                 item.dataset.hit = '2'
                 const modalText = 'woooh you found all the Lynx!'
-                if (hits === numLynx) {
+                if (numLynx === hits) {
                    decideOutcome(modalText)
                 }
             }
