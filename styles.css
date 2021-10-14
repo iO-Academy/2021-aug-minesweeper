@@ -62,6 +62,7 @@ p {
 
 #preLives {
     text-align: center;
+    font-size: 40px;
 }
 .button {
     display: flex;
@@ -70,11 +71,12 @@ p {
 
 .userInput {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-flow: column;
     margin: 10px;
     font-size: 1.25rem;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #button {
@@ -187,13 +189,6 @@ div[data-hit ~= "2"]{
     position: sticky;
     top: 0;
     z-index: 1;
-}
-
-@media screen and (max-width: 900px) {
-    #lynxInput {
-        flex-direction: column;
-        justify-content: space-between;
-    }
 }
 
 @media screen and (max-width: 640px) {

@@ -23,7 +23,7 @@ function validateInput(gridSize, numLynx) {
         return false
     }
     if ((gridSize / 2) < numLynx) {
-        errorMessage = 'Number of lynx can not exceed half of the number you picked for the Forest size'
+        errorMessage = 'Number of lynx can not exceed half of the number you picked for the forest size'
         return false
     }
     return true
@@ -52,16 +52,15 @@ function generateSquares(numLynx, numSnakes) {
     })
 }
 
-function decideOutcome(modalText = 'OOPS! Something went wrong') {
-    modalDiv.style.display = "inline-block"
-    document.querySelector('.scoreMessage').textContent = modalText
-    modalBlur.style.filter = "blur(2px)"
-    playAgainBtn.addEventListener("click", () => {
-        newGame()
-    })
-    document.querySelector('#mainTitle').scrollIntoView({
-        behavior: 'smooth'
-    })
+function generateLives(numLynx) {
+    let lives = Math.floor(numLynx / 2)
+    if (lives > 6) {
+        lives = 6
+    }
+    if (lives < 1) {
+        lives = 1
+    }
+    return lives
 }
 
 function turnCard(numLynx, numSnakes, lives) {
@@ -76,7 +75,7 @@ function turnCard(numLynx, numSnakes, lives) {
                 item.dataset.hit = '2'
                 const modalText = 'woooh you found all the Lynx!'
                 if (numLynx === hits) {
-                   decideOutcome(modalText)
+                    decideOutcome(modalText)
                 }
             }
             if (item.dataset.hit === '0') {
@@ -87,7 +86,7 @@ function turnCard(numLynx, numSnakes, lives) {
                 item.dataset.hit = '2'
                 const modalText = 'Unlucky, too much venom you need to rest'
                 if (numSnakes === misses) {
-                   decideOutcome(modalText)
+                    decideOutcome(modalText)
                 }
             }
             if (lives === 0) {
@@ -99,6 +98,18 @@ function turnCard(numLynx, numSnakes, lives) {
             document.getElementById('livesDisplay').textContent = 'Number of lives: ' + lives
             document.getElementById('lynxFoundDisplay').textContent = 'Lynx found: ' + hits + '/' + numLynx
         })
+    })
+}
+
+function decideOutcome(modalText = 'OOPS! Something went wrong') {
+    modalDiv.style.display = "inline-block"
+    document.querySelector('.scoreMessage').textContent = modalText
+    modalBlur.style.filter = "blur(2px)"
+    playAgainBtn.addEventListener("click", () => {
+        newGame()
+    })
+    document.querySelector('#mainTitle').scrollIntoView({
+        behavior: 'smooth'
     })
 }
 
@@ -124,20 +135,8 @@ function newGame() {
         document.getElementById("preLives").textContent = "-"
 }
 
-function generateLives(numLynx) {
-    let lives = Math.floor(numLynx / 2)
-    if (lives > 6) {
-        lives = 6
-    }
-    if (lives < 1) {
-        lives = 1
-    }
-    return lives
-}
-
 document.getElementById('numLynx').addEventListener("input", (e) => {
     let lynxInputValue = parseInt(e.target.value)
-
     let preLives = generateLives(lynxInputValue)
     if ((Math.sign(lynxInputValue) === -1 ) || (Math.sign(lynxInputValue) === 0)) {
         document.getElementById("preLives").textContent = "-"
@@ -156,10 +155,6 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     const numLynx = parseInt(document.getElementById('numLynx').value)
     const gridSize = parseInt(document.getElementById('gridSize').value)
     const numSnakes = gridSize - numLynx
-
-    //displays lives counter bar
-    document.getElementById('livesCounterBar').style.display = 'flex'
-
     let lives = generateLives(numLynx)
 
     //updates lives bar
@@ -185,6 +180,8 @@ document.querySelector('.form').addEventListener('submit', (e) => {
         //scroll to top of game play area
         document.querySelector('#gameContainer').scrollIntoView({
             behavior: 'smooth'
-        })}
-
+        })
+        //displays lives counter bar
+        document.getElementById('livesCounterBar').style.display = 'flex'
+    }
 })
