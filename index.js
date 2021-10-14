@@ -113,6 +113,9 @@ function newGame() {
     //hides modal
     modalDiv.style.display = "none"
     modalBlur.style.filter = "none"
+
+    //reset preLives counter
+    document.getElementById("preLives").textContent = "-"
 }
 
 function generateLives(numLynx) {
@@ -127,13 +130,12 @@ function generateLives(numLynx) {
 }
 
 document.getElementById('numLynx').addEventListener("input", () => {
-    let preLives = parseInt(document.getElementById("numLynx").value)
-    preLives = generateLives(preLives)
+    let lynxInputValue = parseInt(document.getElementById("numLynx").value)
+    preLives = generateLives(lynxInputValue)
     if(preLives > 0){
         document.getElementById("preLives").textContent = preLives
     }
 })
-
 
 //generate all game tiles
 document.querySelector('.form').addEventListener('submit', (e) => {
