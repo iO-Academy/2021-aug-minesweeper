@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lynx Sweeper</title>
+    <title>SnakeSweeper</title>
+    <link rel="shortcut icon" type="image/jpg" href="./project-assets/snake.svg"/>
     <link rel="stylesheet" href="normalize.css" type="text/css">
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script defer src="index.js"></script>
@@ -11,13 +12,13 @@
 <body>
 <div class="modal-blur">
     <header>
-        <h1 id="mainTitle">Lynx Sweeper</h1>
+        <h1 id="mainTitle">SnakeSweeper 🐍</h1>
         <div class="instructions">
             <h2>Instructions:</h2>
             <p> Some lynx have gone missing and it's your job to find them.</p>
-            <p> Select the Forest size you'd like to search in.</p>
-            <p> Pick how many lynx you are looking for (no more than half of the number you picked for the Forest size) then click the play button.</p>
-            <p> Click on the squares to find all the lynx in the forest... but beware of the snakes!</p>
+            <p> Select the forest size you'd like to search in.</p>
+            <p> Pick how many lynx you are looking for (no more than half of the number you picked for the forest size) then click the play button.</p>
+            <p> Click on the squares to find all the lynx in the forest... but beware of the snakes! You will lose a life each time you get bitten!</p>
         </div>
         <div class="form">
             <form method="post" id="inputForm">
@@ -26,9 +27,13 @@
                         <label for="gridSize">How big is the forest?</label>
                         <input type="number" class="inputBox" id="gridSize" name="gridSize" min="2" max="100" required>
                     </div>
-                    <div class="userInput">
-                        <label for="numLynx">How many Lynx?</label>
+                    <div class="userInput" id="lynxInput">
+                        <label for="numLynx">How many lynx?</label>
                         <input type="number" class="inputBox" id="numLynx" name="numLynx" min="1" max="50" required>
+                    </div>
+                    <div class="userInput">
+                        <label for="preLives">Number of lives:</label>
+                        <p class="inputBox" id="preLives"> - </p>
                     </div>
                 </div>
                 <div class="button">

@@ -59,6 +59,9 @@ p {
     margin: 10px;
 }
 
+#preLives {
+    text-align: center;
+}
 .button {
     display: flex;
     justify-content: center;
@@ -144,7 +147,6 @@ div[data-hit ~= "2"]{
             38.4px 37.2px 33.4px rgba(0, 0, 0, 0.101),
             92px 89px 80px rgba(0, 0, 0, 0.14)
 ;
-
 }
 
 .endModalContent button {
@@ -186,6 +188,13 @@ div[data-hit ~= "2"]{
     z-index: 1;
 }
 
+@media screen and (max-width: 900px) {
+    #lynxInput {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
 @media screen and (max-width: 640px) {
     .inputContainer {
         flex-flow: column;
@@ -218,6 +227,10 @@ div[data-hit ~= "2"]{
 }
 
 @media screen and (max-width: 410px) {
+    .inputContainer {
+        text-align: center;
+    }
+
     .scoreMessage {
         font-size: 20px;
     }
