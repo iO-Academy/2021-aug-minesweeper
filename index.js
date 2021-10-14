@@ -90,6 +90,14 @@ function turnCard(numLynx, numSnakes) {
                    decideOutcome(modalText)
                 }
             }
+            //updates lives bar
+            if(lives === 1){
+                document.getElementById('livesCounter').textContent = 'You have 1 life'
+            } else {
+                document.getElementById('livesCounter').textContent = 'You have ' + lives + ' lives'
+            }
+
+            document.getElementById('lynxFound').textContent = 'Lynx found: ' + hits + '/' + numLynx
         })
     })
 }
@@ -118,6 +126,17 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     const numLynx = parseInt(document.getElementById('numLynx').value)
     const gridSize = parseInt(document.getElementById('gridSize').value)
     const numSnakes = gridSize - numLynx
+
+    //display
+    document.getElementById('livesCounterBar').style.display = 'flex'
+    //updates lives bar
+    if(lives === 1){
+        document.getElementById('livesCounter').textContent = 'You have 1 life'
+    } else {
+        document.getElementById('livesCounter').textContent = 'You have ' + lives + ' lives'
+    }
+
+    document.getElementById('lynxFound').textContent = 'Lynx found: ' + hits + '/' + numLynx
 
     //reset
     document.getElementById('gridContainer').innerHTML = ''
