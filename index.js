@@ -53,7 +53,7 @@ function generateSquares(numLynx, numSnakes) {
     })
 }
 
-function decideOutcome(modalText) {
+function decideOutcome(modalText = 'OOPS! Something went wrong') {
     modalDiv.style.display = "inline-block"
     document.querySelector('.scoreMessage').textContent = modalText
     modalBlur.style.filter = "blur(2px)"
@@ -126,7 +126,8 @@ document.querySelector('.form').addEventListener('submit', (e) => {
     //validates form input
     if (!validateInput(gridSize, numLynx)) {
         document.getElementById('errorMessage').textContent = errorMessage
-        document.getElementById('gameContainer').style.display = "none"} else {
+        document.getElementById('gameContainer').style.display = "none"
+    } else {
         //execute function
         hits = 0
         misses = 0
