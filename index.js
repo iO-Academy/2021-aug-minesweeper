@@ -84,7 +84,6 @@ function turnCard(numLynx, numSnakes, lives) {
                 item.textContent = 'OUCH! That\'s a snake'
                 misses++
                 lives--
-                console.log(lives)
                 item.dataset.hit = '2'
                 const modalText = 'Unlucky, too much venom you need to rest'
                 if (numSnakes === misses) {
@@ -136,10 +135,10 @@ function generateLives(numLynx) {
     return lives
 }
 
-document.getElementById('numLynx').addEventListener("input", () => {
-    let lynxInputValue = parseInt(document.getElementById("numLynx").value)
+document.getElementById('numLynx').addEventListener("input", (e) => {
+    let lynxInputValue = parseInt(e.target.value)
 
-    preLives = generateLives(lynxInputValue)
+    let preLives = generateLives(lynxInputValue)
     if ((Math.sign(lynxInputValue) === -1 ) || (Math.sign(lynxInputValue) === 0)) {
         document.getElementById("preLives").textContent = "-"
     } else if (preLives > 0) {
